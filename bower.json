@@ -1,7 +1,7 @@
 {
   "name": "pizi-localStorage",
   "version": "0.0.1",
-  "main": "localStorage.js",
+  "main": "pizi-localStorage.js",
   "ignore": [
     "package.json"
   ]
