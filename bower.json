@@ -1,0 +1,8 @@
+{
+  "name": "localStorage",
+  "version": "0.0.1",
+  "main": "localStorage.js",
+  "ignore": [
+    "package.json"
+  ]
+}
