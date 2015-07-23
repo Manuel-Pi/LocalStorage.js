@@ -9,7 +9,7 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.IDB = factory();
+        root.pls = factory();
   }
 }(this, function () {
     if(!localStorage){
