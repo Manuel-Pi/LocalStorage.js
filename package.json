@@ -1,6 +1,8 @@
 {
   "name": "pizi-localStorage",
   "version": "0.0.1",
-  "author": "Manuel Pi",
+  "authors": [
+  	"Manuel Pi"
+  ],
   "main": "pizi-localStorage.js"
 }
