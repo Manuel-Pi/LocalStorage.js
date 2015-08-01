@@ -9,7 +9,7 @@
         module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.pls = factory();
+        root.piziLocalStorage = factory();
   }
 }(this, function () {
     if(!localStorage){
