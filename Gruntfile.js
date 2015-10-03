@@ -1,10 +1,17 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		srcFile: 'src/',
+		build: 'build/',
 		testFile: 'tests/',
-		serverFolder: 'C:/Users/e_na/Documents/GitHub/pizi-express-server/Apps/pizi-localStorage/',
+		serverFolder: 'C:/Developppment/Web/Servers/pizi-express-server/Apps/pizi-localStorage/',
 		jshint: {
-			all: '<%= srcFile %>'
+			all: {
+				options: {
+					devel: true,
+					esnext: true
+				},
+				src: '<%= srcFile %>'
+			}
 		},
 		copy: {
 			deployDev : {
@@ -27,7 +34,7 @@ module.exports = function(grunt) {
 				files : [
 					{
 						expand: true,
-						cwd: 'build/',
+						cwd: '<%= build %>',
 						src: ['**'],
 						dest: '<%= serverFolder %>'
 					},
@@ -44,11 +51,12 @@ module.exports = function(grunt) {
 			options: {
 				force: true
 			},
-			deployDev: '<%= serverFolder %>'
+			deployDev: '<%= serverFolder %>',
+			build: '<%= build %>'
 		},
 		babel: {
 			options: {
-				sourceMap: true,
+				sourceMap: false,
 				"experimental": true,
         		"modules": "umd"
 			},
@@ -57,7 +65,7 @@ module.exports = function(grunt) {
 					"expand": true,
 					"cwd": '<%= srcFile %>',
 					"src": ["**/*.js"],
-					"dest": "build/",
+					"dest": '<%= build %>',
 					"ext": ".js"
 				}]
 			}
@@ -68,6 +76,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-babel');
 	
+	grunt.registerTask('build', ['jshint', 'clean:build', 'babel']);
 	grunt.registerTask('deployDev', ['jshint', 'clean:deployDev', 'copy:deployDev']);
-	grunt.registerTask('deployDevBabel', ['jshint', 'clean:deployDev', 'babel','copy:deployDevBabel']);
+	grunt.registerTask('deployBuild', ['build', 'clean:deployDev', 'copy:deployDevBabel']);
 };
