@@ -4,8 +4,11 @@
   "authors": [
   	"Manuel Pi"
   ],
-  "main": "pizi-localStorage.js",
+  "main": "build/pizi-localStorage.js",
   "ignore": [
-    "package.json"
+    "package.json",
+    "tests/",
+    "Gruntfile.js",
+    "jsconfig.json"
   ]
 }
