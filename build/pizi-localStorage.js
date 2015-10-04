@@ -21,6 +21,10 @@
         get: function get(key) {
             if (!localStorage) console.log('Local storage not avaiable!');
             return JSON.parse(localStorage.getItem(key));
+        },
+        'delete': function _delete(key) {
+            if (!localStorage) console.log('Local storage not avaiable!');
+            localStorage.removeItem(key);
         }
     };
 });
