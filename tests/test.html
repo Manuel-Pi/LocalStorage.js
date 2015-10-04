@@ -44,7 +44,8 @@
 			global.piziLocalStorage.save(key, object);
 			var retrieved = global.piziLocalStorage.get(key);
 			assert.ok(retrieved && retrieved.foo === object.foo && retrieved.bar === object.bar, "Object saved and retrieved!");
-			localStorage.removeItem(key);
+			global.piziLocalStorage.delete(key);
+			assert.notOk(global.piziLocalStorage.get(key), "Model deleted!");
 		});
 	  
   </script>
