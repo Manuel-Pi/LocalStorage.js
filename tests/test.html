@@ -32,6 +32,20 @@
 				requireLoadingDone();
 			});
 	  	});
+		  
+		QUnit.test( "Save and get object", function( assert ) {
+			var object = {
+				foo: "foo",
+				bar: "bar"	
+			};
+	
+			var key = "test";
+			
+			global.piziLocalStorage.save(key, object);
+			var retrieved = global.piziLocalStorage.get(key);
+			assert.ok(retrieved && retrieved.foo === object.foo && retrieved.bar === object.bar, "Object saved and retrieved!");
+			localStorage.removeItem(key);
+		});
 	  
   </script>
 </body>
