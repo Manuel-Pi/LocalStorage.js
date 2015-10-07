@@ -1,13 +1,13 @@
 export default {
-    save: function (key, value){
+    save: (key, value) => {
         if(!localStorage) console.log('Local storage not avaiable!');
         localStorage.setItem(key, JSON.stringify(value));
     },
-    get: function (key){
+    get: (key) => {
         if(!localStorage) console.log('Local storage not avaiable!');
         return JSON.parse(localStorage.getItem(key));
     },
-    delete: function (key){
+    delete: (key) => {
         if(!localStorage) console.log('Local storage not avaiable!');
         localStorage.removeItem(key);
     }
