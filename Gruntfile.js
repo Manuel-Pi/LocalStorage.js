@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 		srcFile: 'src/',
 		build: 'build/',
 		testFile: 'tests/',
-		serverFolder: 'C:/Users/e_na/Documents/GitHub/pizi-express-server/Apps/pizi-localStorage/',
+		serverFolder: 'C:/Developppment/Web/Servers/pizi-express-server/Apps/pizi-localStorage/',
 		jshint: {
 			all: {
 				options: {
@@ -56,9 +56,7 @@ module.exports = function(grunt) {
 		},
 		babel: {
 			options: {
-				sourceMap: false,
-				"experimental": true,
-        		"modules": "umd"
+				plugins: ["add-module-exports", "transform-es2015-modules-amd"]
 			},
 			dist: {
 				files: [{
