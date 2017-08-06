@@ -1,24 +1,20 @@
 /**
  * Basic library used to manage LocalStorage and SessionStorage
  */
-// Storage object
-let STORAGE = null;
 // Init the storage object
-function initStorage(storage) {
-    if (!STORAGE) {
-        STORAGE = storage === 'session' ? sessionStorage : localStorage;
-        if (!STORAGE) console.log(storage === 'session' ? 'SessionStorage not available.' : 'LocalStorage not avaiable.');
-    }
-    return STORAGE;
+function getStorage(storage) {
+    var storageObject = storage === 'session' ? sessionStorage : localStorage;
+    if (!storageObject) throw new Error(storage === 'session' ? 'SessionStorage not available.' : 'LocalStorage not avaiable.');
+    return storageObject;
 }
 export default {
     save(key, value, options = {}) {
-        if (initStorage(options.storage)) STORAGE.setItem(key, JSON.stringify(value));
+        getStorage(options.storage).setItem(key, JSON.stringify(value));
     },
     get(key, options = {}) {
-        if (initStorage(options.storage)) return JSON.parse(STORAGE.getItem(key));
+        return JSON.parse(getStorage(options.storage).getItem(key));
     },
     delete(key, options = {}) {
-        if (initStorage(options.storage)) STORAGE.removeItem(key);
+        getStorage(options.storage).removeItem(key);
     }
 };

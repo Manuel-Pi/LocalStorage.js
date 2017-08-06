@@ -85,31 +85,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
  * Basic library used to manage LocalStorage and SessionStorage
  */
-// Storage object
-var STORAGE = null;
 // Init the storage object
-function initStorage(storage) {
-    if (!STORAGE) {
-        STORAGE = storage === 'session' ? sessionStorage : localStorage;
-        if (!STORAGE) console.log(storage === 'session' ? 'SessionStorage not available.' : 'LocalStorage not avaiable.');
-    }
-    return STORAGE;
+function getStorage(storage) {
+    var storageObject = storage === 'session' ? sessionStorage : localStorage;
+    if (!storageObject) throw new Error(storage === 'session' ? 'SessionStorage not available.' : 'LocalStorage not avaiable.');
+    return storageObject;
 }
 /* harmony default export */ __webpack_exports__["default"] = ({
     save: function save(key, value) {
         var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-        if (initStorage(options.storage)) STORAGE.setItem(key, JSON.stringify(value));
+        getStorage(options.storage).setItem(key, JSON.stringify(value));
     },
     get: function get(key) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-        if (initStorage(options.storage)) return JSON.parse(STORAGE.getItem(key));
+        return JSON.parse(getStorage(options.storage).getItem(key));
     },
     delete: function _delete(key) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-        if (initStorage(options.storage)) STORAGE.removeItem(key);
+        getStorage(options.storage).removeItem(key);
     }
 });
 
