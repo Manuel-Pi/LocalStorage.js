@@ -88,10 +88,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Storage object
 var STORAGE = null;
 // Init the storage object
-function initStorage(session) {
+function initStorage(storage) {
     if (!STORAGE) {
-        STORAGE = session && sessionStorage || localStorage;
-        if (!STORAGE) console.log(session ? 'SessionStorage not available.' : 'LocalStorage not avaiable.');
+        STORAGE = storage === 'session' ? sessionStorage : localStorage;
+        if (!STORAGE) console.log(storage === 'session' ? 'SessionStorage not available.' : 'LocalStorage not avaiable.');
     }
     return STORAGE;
 }
@@ -99,17 +99,17 @@ function initStorage(session) {
     save: function save(key, value) {
         var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-        if (initStorage(options.session)) STORAGE.setItem(key, JSON.stringify(value));
+        if (initStorage(options.storage)) STORAGE.setItem(key, JSON.stringify(value));
     },
     get: function get(key) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-        if (initStorage(options.session)) return JSON.parse(STORAGE.getItem(key));
+        if (initStorage(options.storage)) return JSON.parse(STORAGE.getItem(key));
     },
     delete: function _delete(key) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-        if (initStorage(options.session)) STORAGE.removeItem(key);
+        if (initStorage(options.storage)) STORAGE.removeItem(key);
     }
 });
 
